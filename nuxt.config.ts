@@ -13,8 +13,11 @@ export default defineNuxtConfig({
     head: {
       title: 'Nitesh Poudel | Web Developer, Designer & Freelancer | Final Year Projects',
       meta: [
-        { name: 'google-site-verification', content: 'google-site-verification: google8a0d32f924e99331.html' },
+        // { name: 'google-site-verification', content: 'google-site-verification: google8a0d32f924e99331.html' },
         { 
+          name: 'google-site-verification', 
+          content: '7-TqjJHpDGfVrUhQQhPaB7wYk8N31e2Jns0VT4LQuJ4' 
+        },        { 
           name: 'description', 
           content: 'Professional Web Developer and UI/UX Designer in Kathmandu. Offering freelance web development, custom website design, and high-quality Final Year Projects for BCA/CSIT students. Expert in Laravel, Vue.js, and Nuxt.' 
         },
