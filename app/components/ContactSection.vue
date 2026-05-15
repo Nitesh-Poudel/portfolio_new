@@ -1,3 +1,55 @@
+<script setup>
+import { ref } from 'vue';
+
+const form = ref({
+  name: '',
+  email: '',
+  message: '',
+  date: '',
+});
+
+const isSubmitting = ref(false);
+const submitStatus = ref(''); 
+
+const handleSubmit = async () => {
+  isSubmitting.value = true;
+  submitStatus.value = '';
+
+  try {
+    const response = await fetch('https://sheetdb.io/api/v1/bb5umraiqb7em', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        data: [
+          {
+            name: form.value.name,
+            email: form.value.email,
+            message: form.value.message,
+            date: new Date().toLocaleString() 
+          }
+        ]
+      })
+    });
+
+    if (response.ok) {
+      submitStatus.value = 'success';
+      // Reset input layout values on successful log
+      form.value = { name: '', email: '', message: '' };
+    } else {
+      submitStatus.value = 'error';
+    }
+  } catch (error) {
+    console.error('Submission failed:', error);
+    submitStatus.value = 'error';
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+</script>
+
 <template>
   <section id="contact" class="py-5" data-aos="fade-up">
     <div class="container">
@@ -26,8 +78,8 @@
             </div>
 
             <div class="d-flex gap-3 mt-4">
-              <a href="https://github.com/Nitesh-Poudel" class="social-circle"><i class="bi bi-github"></i></a>
-              <a href="#" class="social-circle"><i class="bi bi-linkedin"></i></a>
+              <a href="https://github.com/Nitesh-Poudel" class="social-circle" target="_blank"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/nitesh-poudel-162837251/" class="social-circle"><i class="bi bi-linkedin"></i></a>
               <a href="#" class="social-circle"><i class="bi bi-whatsapp"></i></a>
             </div>
           </div>
@@ -37,29 +89,71 @@
           <div class="glass-card p-4 shadow-lg">
             <form @submit.prevent="handleSubmit">
               <div class="row g-3">
+                
                 <div class="col-md-6">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control glass-input" id="name" placeholder="Name">
+                    <input 
+                      v-model="form.name" 
+                      type="text" 
+                      class="form-control glass-input" 
+                      id="name" 
+                      placeholder="Name" 
+                      required
+                    >
                     <label for="name" class="text-white-50">Your Name</label>
                   </div>
                 </div>
+                
                 <div class="col-md-6">
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control glass-input" id="email" placeholder="Email">
+                    <input 
+                      v-model="form.email" 
+                      type="email" 
+                      class="form-control glass-input" 
+                      id="email" 
+                      placeholder="Email" 
+                      required
+                    >
                     <label for="email" class="text-white-50">Email Address</label>
                   </div>
                 </div>
+                
                 <div class="col-12">
                   <div class="form-floating mb-4">
-                    <textarea class="form-control glass-input" id="msg" placeholder="Message" style="height: 150px"></textarea>
+                    <textarea 
+                      v-model="form.message" 
+                      class="form-control glass-input" 
+                      id="msg" 
+                      placeholder="Message" 
+                      style="height: 150px" 
+                      required
+                    ></textarea>
                     <label for="msg" class="text-white-50">How can I help you?</label>
                   </div>
                 </div>
+                
                 <div class="col-12">
-                  <button class="btn btn-warning w-100 py-3 fw-bold text-dark text-uppercase letter-spacing-1">
-                    Send Message <i class="bi bi-send-fill ms-2"></i>
+                  <button 
+                    :disabled="isSubmitting"
+                    type="submit" 
+                    class="btn btn-warning w-100 py-3 fw-bold text-dark text-uppercase letter-spacing-1 d-flex align-items-center justify-content-center gap-2"
+                  >
+                    <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                    <span>{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
+                    <i v-if="!isSubmitting" class="bi bi-send-fill"></i>
                   </button>
                 </div>
+
+                <!-- Live Notification Feed Blocks -->
+                <div class="col-12 mt-3" v-if="submitStatus">
+                  <div v-if="submitStatus === 'success'" class="alert alert-success bg-success/20 text-emerald-400 border border-success/30 px-3 py-2 rounded-3 text-center text-small">
+                  ✓ Awesome! Thank you for your message. I will get back to you soon.
+                </div>
+                  <div v-if="submitStatus === 'error'" class="alert alert-danger bg-danger/20 text-rose-400 border border-danger/30 px-3 py-2 rounded-3 text-center text-small">
+                    ⚠ Process pipeline broken. Check connection or try again.
+                  </div>
+                </div>
+
               </div>
             </form>
           </div>
@@ -70,7 +164,6 @@
 </template>
 
 <style scoped>
-/* Matching your Hero and Global Style */
 .glass-input {
   background: rgba(255, 255, 255, 0.03) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -115,5 +208,9 @@
 
 .contact-detail i {
   font-size: 1.2rem;
+}
+
+.text-small {
+  font-size: 0.85rem;
 }
 </style>

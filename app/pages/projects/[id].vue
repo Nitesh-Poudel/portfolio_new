@@ -15,11 +15,14 @@ const projects = [
         title: 'Online Thrift Service', 
         img: '/Images/thrift2.png', 
         screenshots: [
+          '/Images/thrift1.png', 
           '/Images/thrift2.png', 
-          '/Images/book1.png', 
-          '/Images/blog.png', 
-          '/Images/chat.jpg', 
-          '/Images/thrift2.png'
+         '/Images/thrift3.png', 
+          '/Images/thrift2.png', 
+           '/Images/thrift2.png', 
+            '/Images/thrift3.png', 
+          '/Images/thrift2.png', 
+           '/Images/thrift2.png', 
         ],
         desc: 'Sustainable fashion platform for peer-to-peer clothing transactions.',
         full_desc: 'A comprehensive platform designed to promote sustainable fashion. Built with a focus on user experiencomprehensive platform desigo promote sustainable fashion. Built with a focus on user experiencomprehensive platform designed to promote sustainable fashion. Built with a focus on user experience and secure transactions.',
@@ -62,9 +65,16 @@ useSeoMeta({
             <img :key="activeImage" :src="activeImage" class="w-100 rounded-3 shadow-lg object-fit-cover main-preview" :alt="project.title">
           </transition>
         </div>
+        <div class="max-w-4xl mx-auto p-6">
+          <!-- <BaseSlider 
+            :images="projectImages" 
+            height="500px" 
+            thumb-height="100px" 
+          /> -->
+        </div>
 
-        <div class="slider-wrapper">
-          <swiper
+          <div class="slider-wrapper ">
+            <swiper
             :modules="[Navigation, FreeMode]"
             :slides-per-view="4"
             :space-between="10"

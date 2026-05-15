@@ -51,7 +51,7 @@ useSeoMeta({
         <div class="row text-center text-md-start">
           <div class="col-md-4 mb-4">
             <h5 class="text-uppercase fw-bold text-warning mb-4 letter-spacing">Contact</h5>
-            <p class="opacity-75 mb-2"><i class="bi bi-envelope-fill text-warning me-2"></i> ntspoudel@gmail.com</p>
+            <p class="opacity-75 mb-2"><i class="bi bi-envelope-fill text-warning me-2"></i> ntspoudel2@gmail.com</p>
             <p class="opacity-75 mb-2"><i class="bi bi-geo-alt-fill text-warning me-2"></i> Kathmandu, Nepal</p>
             <p class="opacity-75 mb-2"><i class="bi bi-phone-fill text-warning me-2"></i> +977-9800000000</p>
           </div>

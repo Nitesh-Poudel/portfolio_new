@@ -8,10 +8,15 @@ import 'swiper/css/pagination'; // Pagination styles
 const modules = [Navigation, Pagination, Autoplay];
 
 const galleryGroups = [
+
   {
-    title: 'Professional Milestones',
-    description: 'Acknowledged for volunteering as a Web Development Trainer.',
-    images: ['/file/gallery/certificate.jpg']
+    title: 'Refreshment', // Fixed spelling
+    description: 'Outing with colleagues from Ambition Guru / Sociair.', // Fixed spelling
+    images: [
+        '/file/gallery/ag11.jpeg', 
+        '/file/gallery/ag12.jpeg',
+        '/file/gallery/ag13.jpeg',
+    ]
   },
   {
     title: 'Passions & Lifestyle',
@@ -25,15 +30,26 @@ const galleryGroups = [
     ]
   },
   {
-    title: 'Roots',
-    description: 'This is where my journey began.',
-    images: ['/file/gallery/home.jpg', '/file/gallery/hob3.jpg']
+    title: 'Graduation',
+    description: 'Memories from college days.',
+    images: [
+        '/file/gallery/triton3.jpeg',
+        '/file/gallery/triton4.jpeg',
+        '/file/gallery/triton5.jpeg',
+        '/file/gallery/triton1.jpeg',
+        '/file/gallery/triton2.jpeg',
+    ]
   },
-  {
-    title: 'Future Horizons',
-    description: 'The journey continues forward.',
-    images: ['/file/gallery/hob4.jpg']
-  }
+    {
+    title: 'Professional Milestones',
+    description: 'Acknowledged for volunteering as a Web Development Trainer.',
+    images: ['/file/gallery/certificate.jpg']
+  },
+//   {
+//     title: 'Future Horizons',
+//     description: 'The journey continues forward.',
+//     images: ['/file/gallery/hob4.jpg']
+//   }
 ];
 </script>
 
@@ -108,11 +124,10 @@ const galleryGroups = [
 
 /* Light/Glow effect on hover */
 .custom-nav:hover {
-  background: #1b1b1b;
-  color:  #fbbf24;
+  background: #fbbf24;
+  color: #0f172a;
   box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
   border-color: #fbbf24;
-  
 }
 
 /* Positioning them between the blocks */
@@ -151,7 +166,10 @@ const galleryGroups = [
   border: 1px solid transparent;
   transition: all 0.3s ease;
 }
-
+.grid-item:hover {
+  border-color: rgba(251, 191, 36, 0.5);
+  transform: scale(0.98); /* Slight shrink creates 'separation' visual */
+}
 
 .gallery-img {
   transition: transform 0.5s ease;
