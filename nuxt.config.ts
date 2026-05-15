@@ -1,9 +1,13 @@
 export default defineNuxtConfig({
+  ssr: true,
+  routeRules: {
+    '/': { prerender: true } 
+  },
   css: [
-    'bootstrap/dist/css/bootstrap.min.css', // 1. Base Framework
+    'bootstrap/dist/css/bootstrap.min.css', 
     'bootstrap-icons/font/bootstrap-icons.css',
     '@fortawesome/fontawesome-free/css/all.min.css',
-    '~/assets/css/main.css' // 2. YOUR CUSTOM COLORS (Must be last)
+    '~/assets/css/main.css'
   ],
   app: {
     head: {
@@ -22,7 +26,7 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'Nitesh Poudel | Web Developer & Freelancer' },
         { property: 'og:description', content: 'Need a custom website or a final year project? Let’s build something together.' },
         { property: 'og:type', content: 'website' }
-      ]
+      ],
     }
   }
 })
